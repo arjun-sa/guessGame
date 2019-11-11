@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>GUESS GAME</title>
+    <link rel = "stylesheet" href = "guessGame.css">
+    <script>
+      var count = 0;
+      var pics = ["<img src = 'scion frs.jpg'>","<img src = 'subaru brz.jpg'>","<img src = 'toyota 86.jpg'>"];
+      var solutions = ["ScionFRS","SubaruBRZ","Toyota86"];
+      var guesses = [];
+      var round = 1;
+      var correct = 0;
+      var i = 0;
+    function game()
+      {
+        document.getElementById("out").innerHTML = pics[count];
+      }
+
+    function play()
+      {
+        guesses[count] = document.getElementById('answer').value;
+        i++;
+        count++;
+
+        if (solutions.length == guesses.length || guesses.length >= pics.length)
+        {
+          compareArrays(solutions, guesses);
+        }
+        else
+        {
+          game();
+        }
+      }
+    function compareArrays(x , y)
+      {
+        for (var i = 0; i < x.length; i++)
+        {
+          if(x[i] == y[i])
+          {
+            correct++;
+          }
+        }
+        document.getElementById("message").innerHTML = ("You got " + correct + " correct");
+        return;
+      }
+
+    </script>
+  </head>
+
+<h1>Guess the Car</h1>
+  <body onload = "game()">
+    <span id = "out"></span>
+    <br>
+    <span id = "message"></span>
+    <br>
+    <input type = "text" value = "answer" id = "answer">
+    <input type = "button" value = "go!" onclick = "play()">
+  </body>
+</html>
